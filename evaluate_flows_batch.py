@@ -30,12 +30,8 @@ nodelist = spm_data['nodelist']
 with open(args.srcdestmodules_file, 'r') as f:
     srcrows,destrows = zip(*map(lambda x: x.rstrip().split('|'),f.readlines())) # this line is tricky but it just splits the rows in srcmodule and destmodule
 
-if args.int_nodeid:
-	srcmodules = map(lambda x: map(int,x.split(' ')), srcrows)
-	destmodules = map(lambda x: map(int,x.split(' ')), destrows)
-else:
-	srcmodules = map(lambda x: x.split(' '), srcrows)
-	destmodules = map(lambda x: x.split(' '), destrows)
+srcmodules = map(lambda x: map(nodetype,x.split(' ')), srcrows)
+destmodules = map(lambda x: map(nodetype,x.split(' ')), destrows)
 
 gm = utils.GIDMapper(nodelist=nodelist)
 

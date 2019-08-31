@@ -59,10 +59,16 @@ def pick_random_nodes_matching_selected(network, bins, nodes_selected, n_random,
             if ordered: # added by Maiorino
                 for node in nodes_selected:
                     equivalent_nodes = node_to_equivalent_nodes[node]
-                    nodes_random.append(random.choice(equivalent_nodes))
+                    rdmnode = random.choice(equivalent_nodes)
+                    while rdmnode in nodes_random:
+                        rdmnode = random.choice(equivalent_nodes)
+                    nodes_random.append(rdmnode)
             else:
                 for node, equivalent_nodes in node_to_equivalent_nodes.iteritems():
-                    nodes_random.append(random.choice(equivalent_nodes))
+                    rdmnode = random.choice(equivalent_nodes)
+                    while rdmnode in nodes_random:
+                        rdmnode = random.choice(equivalent_nodes)
+                    nodes_random.append(rdmnode)
         else:
             if connected:
                 nodes_random = [random.choice(nodes)]

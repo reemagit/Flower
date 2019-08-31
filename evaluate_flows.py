@@ -43,7 +43,8 @@ print "Evaluating flows..."
 flows = flower.eval_flow_centrality(nodes_dest, nodes_src, spm=spm_data)
 
 data = pd.DataFrame(zip(spm_data['nodelist'], flows[:, 0], flows[:, 1], flows[:,2].astype(int)), columns=['NodeID', 'Flow_value', 'Flow_value_unnorm','Num_paths'])
-data.NodeID = data.NodeID.astype(int)
+if args.int_nodeid:
+	data.NodeID = data.NodeID.astype(int)
 data.set_index('NodeID', inplace=True)
 
 print "Completed."
