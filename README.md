@@ -3,6 +3,8 @@ Code to evaluate the flow centrality on a network
 
 # Requirements
 
+Python 2.7 is required to run this code.
+
 To install required package use the commands:
 
 conda install numpy scipy tqdm pandas h5py
